@@ -9,7 +9,7 @@ class CustomController extends Controller
 
     public function index(){
 
-        return "Привет";
+        return "Привет Кирилл, ты научился гиту";
 
     }
 
