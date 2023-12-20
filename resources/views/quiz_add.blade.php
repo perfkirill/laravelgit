@@ -8,6 +8,7 @@
     <title>Document</title>
     @vite(['resources/css/reset.css'])
     @vite(['resources/css/style.css'])
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
 <section class="workspace">
@@ -39,6 +40,14 @@
 
                 <div class="quiz_add_form_section">
                     <div class="quiz_add_form_title">Ответы на вопрос</div>
+
+
+                    <div class="quick_complete clear">
+                        <textarea name="" id="quick_complete_val" cols="30" rows="10"></textarea><br><br><br>
+                        <span class="quick_complete_button ui_button">Соотнести</span><br><br>
+                        <br><br><br>
+                    </div>
+
                     <div class="quiz_add_form_answers">
                         <div class="quiz_add_form_answer">
                             <div class="quiz_add_form_answer_title">Ответ 1</div>
@@ -140,5 +149,27 @@
         </div>
     </div>
 </section>
+
+<script>
+
+    $("#quick_complete_val").on("change", function() {
+
+
+        var answers = $("#quick_complete_val").val().split('\n');
+
+        $.each(answers, function( k, v ) {
+            k++;
+            var nameInput = "answer"+k;
+
+            $("input[name='"+nameInput+"']").val(v);
+
+        });
+
+        console.log(answers);
+
+    } );
+
+</script>
+
 </body>
 </html>

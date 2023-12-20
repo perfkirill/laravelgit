@@ -13,7 +13,7 @@ class MainController extends Controller
     public function show_quiz()
     {
 
-        $questions = Question::where("learned",'0')->get();
+        $questions = Question::where("learned",'0')->inRandomOrder()->get();
 
         return view("quiz",compact(['questions']));
 
@@ -79,8 +79,10 @@ class MainController extends Controller
         }
       //сравниваем 2 массива
         $diff_arrays = array_diff( $correct_answers,$request->answers);
+        $diff_arrays2 = array_diff( $request->answers,$correct_answers);
 
-        if($diff_arrays){
+
+        if($diff_arrays || $diff_arrays2){
             return json_encode(array("status" => "error", "message" => "Ответ не верен", "correct_answer" => $correct_answers_names));
         }
         else{
